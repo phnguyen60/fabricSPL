@@ -1,0 +1,54 @@
+Modeling torque generation of the actuators follows the same geometric principles outlined in calculating bending angle. However, line contact is replaced with the interacting area of each actuator due to boundary conditions created by adjacent bladders. The length, L, of interaction is the main point of interest since it provides the reactionary forces required to produce torque. In order to determine the amount, shared trigonometric and geometric relationships are needed to be defined to find the solution to L.  
+
+
+
+
+
+
+
+
+
+
+
+
+Figure X - Left: View of two interacting actuators placed in an enlarged/exaggerated method along the outside of a user’s arm to demonstrate the overall placement. Right: Section view of a single inflated actuator, with all dimension considerations for the following models
+
+A half section view of the interacting bladder is used to define parameters needed to solve for L, where 
+
+\begin{equation}\label{eq. X4}
+	 L = \frac{\pi}{2}(r_1+r_2) - \pi R,
+\end{equation}
+
+with R being the radius of the inflated bladder and a value derived from the height, $h_0$, of the uninflated actuator. Solutions to $r_1$ and $r_2$ can be found using tangent relationships that include the radius of curvature for the base of the device, $R_x$, where the arc length is defined by equation #, with $\theta_{max}$ representing the user’s maximum range of motion. It is assumed that this radius of curvature is proportional to the inverse of the arm’s bending angle, and therefore ranges from ${\infty}$ to $R_{1}$, the radius of the elbow joint (Fig. xx). Additionally, the spacing between bladders, $d$ is also assumed to cumulatively represent the curved arc length, and not an open ended polygon. 
+
+\begin{equation}\label{eq. X2}
+	S = R_1\Theta_{max}
+\end{equation}
+\begin{equation}\label{eq. X3}
+	R_x(\Theta_0) = R_1\frac{\Theta_{max}}{\Theta_0}
+\end{equation}
+
+Equations # and ## shows the result of algebraic manipulation for $r_1$ and $r_2$, respectively. Entities a, b, and c of the quadratic solution to $r_2$ were found using various substitutions of available geometric relationships and the same tangent relationship used to determine $r_1$. Note that the dependent variable for bending angle, $\theta_0$, is replaced with $\theta_1$ by the relationship in equation #, where $\textit{n}$ represents the number of bladders used in the device. This is due to the method of interpreting dimensions based on the half-section view of an inflated bladder. 
+
+\begin{equation}
+	r_1(\theta_1)  = \frac{dR_x}{2R_xcos(\frac{\theta_1}{2\textit{n}})}
+\end{equation}
+ \begin{equation}
+	r_2(\theta_1)  = -b + \sqrt{\frac{b^2-4ac}{2a}}
+\end{equation}
+\begin{equation}
+\theta_1 = \frac{\theta_0}{2\textit{n}}
+\end{equation}
+
+When the originally rectangular bladders are inflated, they do not form a perfect cylinder due to the boundary conditions of the structure, witnessed in previous work with inflatable bladders [A Hybrid Plastic-Fabric Soft Bending Actuator with Reconfigurable Bending Profiles]. Therefore, an approximation is made on the effective width, $w_1$, in contact. The assumption is that reduction from initial width, $w_0$, is dependent on the ratio of the inflated bladder height, $h_1$ to initial height, $h_0$ (Eq #).
+
+\begin{equation}
+	w_1(\theta_1)  = w_0-2R(1-\frac{h_1-2R}{h_0-2R})
+\end{equation}
+
+Once L was determined, the effective force can be calculated and therefore the torque it would generate about the elbow joint. Since Pressure, P is equal at every point within the bladder, force, F is also distributed evenly across the interacting area (LW) and is represented as a point load applied at $L_f$, the distance from the axis of rotation to the center of L.
+A looped function was created inside MATLAB to assess torque values from various inputs, i.e. actuator heights, quantity of bladders and a 90 degree bending angle (Fig. XX). These were the three main considerations for inputs based on design constraints in which the remaining parameters are derived from them. Pressure input, P,  was set to a safe limit determined through preliminary testing of individual actuators, with reliable resistance to bursting up at 300kPa. Torque has a linear dependency on pressure as shown in Eq. 16, therefore only one set pressure was modeled for. 
+
+\begin{equation}\label{eq. X16}
+	\tau = FL_f ; F = PLw_1 
+\end{equation}
