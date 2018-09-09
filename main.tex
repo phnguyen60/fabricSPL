@@ -104,7 +104,7 @@ In this paper, we have designed a novel, highly-articulated, high-power-to-weigh
 
 
 \section{fSPL Functional Requirements and Design}
-
+\label{sec:func_req}
 \begin{table}[t!]
 \caption{Specifications for a fabric-based Soft-Poly Limb (fSPL) Characteristics} 
 \label{tab:spec_table}
@@ -173,10 +173,10 @@ Customization is also a key factor emphasized to allow for improved future adopt
 	\textbf{\emph{Material}} & \textbf{\emph{Density (N) }} & \textbf{\emph{Seal Strength}} & \textbf{\emph{Burst }} \\[-1pt]
                              &                              & \textbf{\emph{(kg/m$^3$)}} & \textbf{\emph{Strength}}\\
                              &                              &                            & \textbf{\emph{(MPa)}}\\\midrule
-	Rockywoods 200D &840.00 &168.35 & 0.53 \\
-    Outdoor Oxford 200D  &757.58 &  183.68 & 0.48\\
-    Ripstop 200D &758.62 & 192.19 & 0.30\\
-    Seatle Diamond 200D &892.86 & 164.75 & 0.36\\
+	Rockywoods 200D &840.00 &168.35 & 0.53+5.821 \\
+    Outdoor Oxford 200D  &757.58 &  183.68 & 0.48+4.518\\
+    Ripstop 200D &758.62 & 192.19 & 0.4+2.466\\
+    Seatle Diamond 200D &892.86 & 164.75 & 0.36+3.855\\
     DIY Packraft 400D & 982.46& 155.32 & x\\
     DIY Packraft 1000D &1000.00 & 236.17 & x\\
     Taffeta 70D &700.00& 142.13 & x\\\bottomrule 
@@ -254,10 +254,10 @@ w_a &\leq  R_c/(\frac{\sqrt{3}}{6} + \frac{1}{r}) - 2\cdot s_l -f_l \label{eq:wa
 \vspace{-1.5em}
 \end{figure}
 
-The optimization function is set as the tip force of a bending actuator array seen in Fig. \ref{fig:fem_opti}. This tip force is simulated using computational FEM model simulations with two varying parameters, the ratio ($r$) and the number of actuators ($n$). The ratio ($r$) was varied from $1.25$ to $2.0$, as seen in Fig. \ref{fig:fem_opti}. The ratio $r$ is then used to calculate $w_a$ and $h_a$ using Eq. 2 and 3. The number of actuators ($n$) is varied based off the minimum and maximum $s_p$. The maximum $n$ is determined by the minimum $s_p \geq 7.5mm$, which meant $n = 19$ determined from Eq. 2. The minimum $n$ is determined by the minimum number of actuators required to generate significant tip force from the actuator array, this was determined with FEM simulations as $n = 8$, as seen in Fig. \ref{fig:fem_opti}. As seen in Fig. \ref{fig:fem_opti}, the more the actuators in the array, the higher the tip force of the actuator array. By varying the ratio ($r$) between $w_a$ and $h_a$, we notice fairly similar trend lines for the ratios, seen in Fig. \ref{fig:fem_opti}. Therefore, the setup least likely to have actuator slippage that could result in torsion effects is selected, with $r =2.0$. Finally, in order to get the setup that produced the highest amount force, the maximum $n$ possible ($n = 19$) is chosen.
+The optimization function is set as the tip force of a bending actuator array seen in Fig. \ref{fig:fem_opti}. This tip force is simulated using computational FEM model simulations with two varying parameters, the ratio ($r$) and the number of actuators ($n$). The ratio ($r$) was varied from $1.25$ to $2.0$, as seen in Fig. \ref{fig:fem_opti}. The ratio $r$ is then used to calculate $w_a$ and $h_a$ using Eq. 2 and 3. The number of actuators ($n$) is varied based off the minimum and maximum $s_p$. The maximum $n$ is determined by the minimum $s_p \geq 7.5mm$, which meant $n = 19$ determined from Eq. 2. The minimum $n$ is determined by the minimum number of actuators required to generate significant tip force from the actuator array, this was determined with FEM simulations as $n = 8$, as seen in Fig. \ref{fig:fem_opti}. As seen in Fig. \ref{fig:fem_opti}, the more the actuators in the array, the higher the tip force of the actuator array. By varying the ratio ($r$) between $w_a$ and $h_a$, we notice fairly similar trend lines for the ratios, seen in Fig. \ref{fig:fem_opti}. Therefore, the setup least likely to have actuator slippage that could result in torsion effects is selected, with $r =2.0$. Finally, in order to get the setup that produced the highest amount force, the maximum $n$ possible ($n = 19$) is chosen. The FEM model is experimentally validated in Section ~\ref{sec:act_array_fem_real}
 
 \subsubsection{Experimental Validation of the Actuator Setup}
-
+\label{sec:act_array_fem_real}
 To experimentally validate the quality of the FEM model against the performance of the bladder actuator array prototype, the payload capacity of the bladder actuator array is first evaluated for payload at different set pressures. The bladder actuator array is mounted against the force plate of the universal tensile testing machine (Instron 5944, Instron Corp., High Wycombe, United Kingdom) as seen in Fig \ref{fig:payload_all}e). The bladder actuator array is inflated upwards away from the influence of gravity and the load is measured at small pressure increments until 0.34$MPa$, as seen in Fig \ref{fig:single_fem_real}. Both FEM and experimental data demonstrated similar load output trends with an RMS error of 9.087$N$. 
 
 
@@ -271,17 +271,39 @@ To experimentally validate the quality of the FEM model against the performance 
 \vspace{-1.5em}
 \end{figure}
 
-The fabrication process of the fSPL shown in Fig. \ref{fig:fabrication} starts from creating the fabric bladders using the TPU-coated nylon fabric (6607, Rockywoods Fabric, CO) selected in subsection \ref{sec:mat_select}.  The material is cut into shape using a laser cutter (Glowforge Pro, Glowforge, Seattle, WA) and the pneumatic fittings are attached (5463K361, McMaster-Carr, Elmhurst, IL). A sealant is also added around the pneumatic fitting to prevent any air leakage (Seam Grip, Gear Aid, Bellingham, WA). The material with the fittings are then arranged on the customized CNC router (Shapeoko 3, Carbide Motion, Torrance, CA) with a soldering iron tip set at 232$^{\circ}$C and traced to seal the fabric bladders, as seen in Fig. \ref{fig:fabrication}b). This apparatus enables rapid heat-sealing of a variety of fabric soft actuator patterns of different shapes and materials accurately and repeatedly, up to 24 individual actuators at a time. Pouches for the individual actuators are then evenly sewn into an array configuration as seen in Fig. \ref{fig:fabrication}a), using a heavy duty sewing machine (Memory Craft 6500P, Janome, Hachioji, Tokyo). The individual actuators as depicted in Fig. \ref{fig:fabrication}c), are then slotted into the pouches in the actuator array, as shown in Fig. \ref{fig:fabrication}a). This approach of using individual actuators in pouches allows for ease of replacement of the actuators in the event of maintenance. Three sets of 3 actuator arrays are then arranged and sewn in an equilateral triangle fashion, with internal angles of 60$^{\circ}$, to create equilateral triangle prisms called the fabric 3-chambered bending actuators (f3CBAs) shown in Fig. \ref{fig:fabrication}d). The 3 sets of f3CBAs are connected together using 3D printed modular connectors fabricated using PLA material (1811201, MakerGear, Beachwood, Ohio). The actuator arrays are sewn and glued onto the connector pieces using kevlar threads (8800K41, McMaster-Carr, Elmhurst, IL) on both ends. The f3CBAs segments are bolted at the connector pieces to create the fSPL as shown in Fig. \ref{fig:fabrication}d). The modularity of the connector pieces also allows for the addition of a variety of end-effectors to be mounted at the tip of the fSPL such as a suction cup (5427A636, McMaster-Carr, Elmhurst, IL).
-
-Finding the appropriate mounting point for the fSPL on the human body is essential for multiple factors such as force transmission, comfort, and safety. Keeping in consideration, the functional requirement to carry up to four times its weight, its support requires to be strong enough to hold its position. To tackle these issues the hip was used as the main attachment point for the fSPL. Mounting the fSPL at the hip also allows for free manipulation of the arm through a workspace that complements the user's arms. To attach the fSPL to the body, a modified technical belt(S\&F Deluxe Technical Belt, Lowepro, Petaluma, CA) as shown in Fig. \ref{fig:fig1}c) is used and the modifications are focused on increasing the belt's resistance to force. The utility belt includes reinforcement necessary to distribute the forces generated by carrying weights ranging from 0.1$kg$ to 1$kg$. A zippered fabric pouch used to house the fSPL in a compressed state for ease of storage. A support structure consisting of a 3D printed “L” bracket is designed to mount the fSPL to the belt. A thermoplastic acrylic-polyvinyl chloride (TAPC) sheet manufactured to fit the curvature of the torso is used as a padding structure to evenly distribute the forces onto the body to avoid pinch points and discomfort.
-
+The fabrication process of the fSPL shown in Fig. \ref{fig:fabrication} begins with the creations of fabric TPU-coated nylon fabric actuators (6607, Rockywoods Fabric, CO). The material is cut into shape using a laser cutter (Glowforge Pro, Glowforge, Seattle, WA) and the pneumatic fittings are attached (5463K361, McMaster-Carr, Elmhurst, IL). A sealant is also added around the pneumatic fitting to prevent any air leakage (Seam Grip, Gear Aid, Bellingham, WA). The material with the fittings are then arranged on the customized CNC router (Shapeoko 3, Carbide Motion, Torrance, CA) with a soldering iron tip set at 232$^{\circ}$C and traced to seal the fabric bladders, as seen in Fig. \ref{fig:fabrication}b). This apparatus enables rapid heat-sealing of a variety of fabric soft actuator patterns of different shapes and materials accurately and repeatedly, up to 25 individual actuators at a time. Pockets for the individual actuators are then evenly sewn into an array configuration as seen in Fig. \ref{fig:fabrication}a), using a sewing machine (Memory Craft 6500P, Janome, Hachioji, Tokyo). The individual actuators as depicted in Fig. \ref{fig:fabrication}c), are then slotted into the pockets to create an actuator array, as shown in Fig. \ref{fig:fabrication}a). This approach allows for ease of replacement of the actuators for maintenance. Three sets of 3 actuator arrays are then arranged and sewn into an equilateral triangle prism called the fabric 3-chambered bending actuators (f3CBAs) shown in Fig. \ref{fig:fabrication}d). Modular 3D-printed connectors are sewn into the distal and proximal ends of the f3CBAs and are used to connect them together with M5 bolts, in order to create the fSPL in Fig. \ref{fig:fabrication}d). The modularity of the connector pieces also allows for the addition of a variety of end-effectors to be mounted at the tip of the fSPL such as a suction cup (5427A636, McMaster-Carr, Elmhurst, IL). A zippered fabric pouch is used to house the fSPL in a compressed state for ease of storage. To attach the fSPL to the body, the fabric pouch is sewn onto a modified technical belt(S\&F Deluxe Technical Belt, Lowepro, Petaluma, CA) as shown in Fig. \ref{fig:fig1}c) to evenly distribute the load carried by the fSPL while providing comfort to the user. 
 \section{Testing and Evaluation of fSPl}
 For the fSPL to be effective in everyday use, it is vital that the fSPL is capable of carrying the desired payload and maneuver effectively in 3D space. Therefore, we evaluated the fSPL through experimentally validating the computational FEM models of the system, performing various payload experiments, determining the maneuverable workspace of the SPL, and finally determining the users' ability control and carry a variety of daily livings objects through pick-and-place experiments.
 
-\subsection{FEM vs Experimental}
+\subsection{Payload Capacity}
+
+To explore the payload capacity before making the prototype, FEM models of the actuator array, f3CBA, and fSPL were created and tested. The FEM models as seen in Fig. ~\ref{fig:single_fem_real} and ~\ref{fig:f3CAs_load_fem_real} and \textbf{xxxx}, are placed against gravity and inflated upwards against a force plate where the payload is measured. These models are then experimentally validated using a universal tensile testing machine (Instron 5944, Instron Corp., High Wycombe, United Kingdom). Further, the free-space payload of f3CBA and fSPL, are tested by lifting loads from a deflated state. 
+
+\subsubsection{Payload Capacity of the actuator array}
+\label{sec:act_array_fem_real}
+
+As seen in Fig. ~\ref{fig:single_fem_real} the actuator array is inflated upwards away from the influence of gravity against the force plate of a UTM, constrained to push only in the vertical direction. The load is measured at small pressure increments of  0.069$MPa$ until 0.34$MPa$. Both FEM and experimental data demonstrated similar load output trends with an RMS error of 9.087$N$. The single actuator array, weighing 0.098$kg$, was capable of producing 177.2$N$ in the FEM simulation and 174.7$\pm$6.367$N$ for 3 trials experimental at 0.34$MPa$, a 1.4\% error. 
+
+
+\subsubsection{Payload Capacity of the f3CBA}
+
+For a single f3CBA segment, the load capacity when the 2 bottom adjacent actuator arrays were inflated was evaluated in FEM and experimentally with the same UTM setup, as seen in Fig. \ref{fig:f3CAs_load_fem_real}. Both the experimental and FEM simulation data when compared showed close approximation with an RMS error of 4.057$N$. A result of 56.9$N$ and 53.7$\pm$1.041$N$ for three trials was shown for the FEM simulation and experimentally, respectively (A 5.62\% error) at 0.34$MPa$. 
+
+To the test the free-space payload of f3CBA, a single f3CBA segment is fixed horizontally and weights were attached at the proximal end of the segment. The segment was inflated until the segments were at least parallel to the ground. With 3 trials, the segment with the bottom adjacent bladders inflated to 0.34$MPa$ was capable of lifting up to 5.5$kg$, approximately 15.1$x$ its own weight of 0.37$kg$.
+
+
+\subsubsection{Payload Capacity of the fSPL}
+
+Finally, the payload capacity of the complete fSPL is first predicted using the FEM model and experimental validated. The average load detected from the UTM force plate was an average of 14.91$\pm$0.926$N$ for 2 trials, where the bottom adjacent chambers of the distal segments were pressurized up to 0.345$MPa$ and the bottom adjacent chambers in the proximal segment were pressurized up to 0.207$MPa$ to maintain the fSPL parallel the ground against gravity. The FEM model for the same setup showed a close approximation of 20$N$, which is a 22.2\% error. 
+
+Under the same pressurization scheme, weights are mounted at the proximal end of the fSPL and lifted to the position parallel against the ground, against gravity. The maximum payload capacity of the 1.1$kg$ fSPL was seen to be 1.5$kg$, surpassing our desired payload goal of 1$kg$ as mentioned in Section ~\ref{sec:func_req}.
+
+
+\subsection{FEM vs Experimental: Trajectory Tracking}
 
 %Why are there two FEM vs Experimental sections here?
-\subsubsection{f3CBA FEM vs Experimental}
+% \subsubsection{f3CBA FEM vs Experimental}
+\subsubsection{f3CBA Bending Trajectory}
 
 \begin{figure}[b!]
 \centering
@@ -291,7 +313,6 @@ For the fSPL to be effective in everyday use, it is vital that the fSPL is capab
 \vspace{-1.5em}
 \end{figure}
 
-A single f3CBA segment is also mounted against the UTM as seen in Fig. \ref{fig:payload_all}a). This was done to compare the load capacity when inflating 2 adjacent bladder actuator arrays against the FEM model of the same set up. The two sides of the f3CBA were also inflated until 0.34$MPA$, as seen in Fig. \ref{fig:f3CAs_load_fem_real}. Both the experimental and FEM simulation data when compared showed close approximation with an RMS error of 4.057$N$. 
 
 \begin{figure}[t!]
 \centering
@@ -304,11 +325,10 @@ A single f3CBA segment is also mounted against the UTM as seen in Fig. \ref{fig:
 
 An experiment to compare the bending motion trajectory of a f3CBA segment of the FEM model and prototype was also conducted. A set of passive reflective markers are attached to the distal end of the segment to create a rigid body in the center of the distal enter and the motion capture system is used to track the motion of the distal end when one side of the segment is inflated up to 0.345$MPa$ quasi-statically, as seen in Fig. \ref{fig:f3CAs_bend_fem_real}. The distal end position of the 3CA in the FEM simulation and experimental results in a Euclidean distance error of 6.8$mm$. The rather close match between the trajectories of the model and experimental data shows that the FEM model can be used to predict the complex motion of a single segment of the fSPL.
 
-\subsubsection{fSPL FEM vs Experimental}
 
-To investigate the payload capacity of the complete 3-segment, fSPL using the prediction of the FEM model and the experimental validation through the fSPL prototype, the fSPL was inflated away from gravity and the end-effector of the fSPL was pushed against the UTM load plate as seen in Fig \ref{fig:payload_all}c). The maximum load detected from the instron force plate was 1.5$kg$ where the bottom adjacent chambers of the distal segments were pressurized up to 0.345$MPa$ and the proximal segment’s bottom adjacent chambers were pressurized up to 0.207$MPa$ to maintain the fSPL parallel the ground against gravity. Both FEM and experimental data demonstrated similar load output trends with an RMS error of 9.087$N$. 
+\subsubsection{fSPL Motion Trajectory}
 
-Finally, we determine the FEM’s model to predict the continuum complex non-linear motion produced by the entire fSPL, a single complex pose is generated and recorded using the motion capture system. Four sets of markers were added at the proximal and distal end of every segment to create virtual rigid bodies along the body of the fSPL. The fSPL was mounted horizontally against gravity, and the bottom two chambers of the first segment were inflated to 0.207$MPa$ and 0.345$MPa$ respectively, the bottom right chamber of the second segment was inflated to 0.207$kPa$, and finally the bottom left chamber of the third segment was inflated to 0.207$MPa$ to generate a snake-like motion using the fSPL, as seen in Fig. \ref{fig:pose}. The experimental Euclidean displacement error is found to be \textbf{xxx} $mm$ when comparing the FEM model. Thus proving that the FEM models created for the single bladder actuator array, the f3CBA, and the full fSPL are able to predict the load capability and complex motions generated by the interacting bladder actuator arrays.
+We determine the FEM’s model to predict the continuum complex non-linear motion produced by the entire fSPL, a single complex pose is generated and recorded using the motion capture system. Four sets of markers were added at the proximal and distal end of every segment to create virtual rigid bodies along the body of the fSPL. The fSPL was mounted horizontally against gravity, and the bottom two chambers of the first segment were inflated to 0.207$MPa$ and 0.345$MPa$ respectively, the bottom right chamber of the second segment was inflated to 0.207$kPa$, and finally the bottom left chamber of the third segment was inflated to 0.207$MPa$ to generate a snake-like motion using the fSPL, as seen in Fig. \ref{fig:pose}. The experimental Euclidean displacement error is found to be \textbf{xxx} $mm$ when comparing the FEM model. Thus proving that the FEM models created for the single bladder actuator array, the f3CBA, and the full fSPL are able to predict the load capability and complex motions generated by the interacting bladder actuator arrays.
 
 \begin{figure}[t!]
 \centering
@@ -319,31 +339,19 @@ Finally, we determine the FEM’s model to predict the continuum complex non-lin
 
 
 
-\subsection{Payload Capacity of the fSPL}
+% \subsection{Payload Capacity of the fSPL}
 
 
-\begin{figure}[t!]
-\centering
-\includegraphics[width=0.45\textwidth]{Figures/payload_all_v2}
-\caption{Payload Setup for single bladder array, f3CBA, and fSPL}
-\label{fig:payload_all}
-\vspace{-1.5em}
-\end{figure}
+% \begin{figure}[t!]
+% \centering
+% \includegraphics[width=0.45\textwidth]{Figures/payload_all_v2}
+% \caption{Payload Setup for single bladder array, f3CBA, and fSPL}
+% \label{fig:payload_all}
+% \vspace{-1.5em}
+% \end{figure}
 
-
-\subsubsection{Single Bladder Actuator Array Payload}
-The upward force generated by a single actuator array is tested using the Instron machine. The last actuator on the array is placed directly under the Instron machine and the air pressure inside the bladders were increased in increments of 0.069$MPa$ until 0.345MPa. In the end, the single bladder array produced 174.73$N$ of force at 0.345$MPa$, which is similar to lifting 17.4$kg$ of weights by only a single array of bladders.
-
-\subsubsection{Single Segment f3CBA Payload}
-
-A single arm segment was fixed horizontally and weights were then attached on the free end of the arm in increments. The bladders on the arm were then inflated until the arm segment was at least parallel with the ground. The first test was conducted by inflating only 1 side of bladders which managed to lift up 4.8$kg$ at 0.35$MPa$. Next, 2 sides were inflated which managed to lift up 6.3$kg$ at 0.372$MPa$. With the single segment weighing in at about 0.37$kg$, and able to lift up to 6.3$kg$, this means that it can carry approximately 17 times its own weight. The segment was then fixed horizontally and this time the free end was placed directly under the Instron machine. Only 1 side of bladders were inflated, which applies normal force onto the Instron machine. The air pressure was increased in increments of 0.069$MPa$ until 0.345$MPa$ and the respective force values were recorded. The test was conducted 3 times to ensure the most accurate results. At 0.345$MPa$, the segment, with only 1 side inflated produced 40.2$N$, which is equivalent to 4.02$kg$ of weight. The same procedures were repeated for when 2 sides were inflated and the segment generated 53.7$N$ at 0.345$MPa$, which is equivalent to 5.37$kg$. These results for 1 and 2 sides are very similar to the real payload test with discrepancies of only 16.7\% and 14.8\% respectively. This has shown that the single segment (f3CBA), which is able to generate 53.7$N$ of force while only weighing at 0.37$kg$ has an impressive payload-to-weight ratio of 14:1.
-
-\subsubsection{fSPL Payload}
-The arm is fixed parallel to the ground and weights were attached on the free end. The air pressure inside the bladders were increased until the arm is able to lift up the weights. The maximum payload capacity of the full arm (fSPL) is 1.5$kg$ when the first and second segment are at 0.345$MPa$ and the third segment is at 0.207$MPa$. The full arm weighs approximately 1.11$kg$, and is able to lift weights of up to 1.5$kg$.Next, the full arm was fixed horizontally and its free end was placed under the Instron machine. Air pressure in the bladders for each segment was increased gradually until all of the segments were at 0.345$MPa$, which generated a maximum force of 15.56$N$. This is comparable to lifting weights of almost 1.5$kg$ and these results show that the fSPL can carry items 1.36 times its own weight.
 
 \subsection{Pick and Place}
-
-
 
 \begin{figure}[b!]
 \centering
@@ -353,7 +361,7 @@ The arm is fixed parallel to the ground and weights were attached on the free en
 \vspace{-1.5em}
 \end{figure}
 
-To test the combination of effective fSPL payload, or the payload when the fSPL is used in real-life situations, along with user controllability, a pick-and-place experimental setup designed for multiple users was designed. For this test, a vacuum suction cup manipulator is connected to the end of the fSPL. The vacuum suction cup has a theoretical payload of 0.86$kg$ and is connected to a vacuum pump with depressurization rates at 1.42x10$^{-3}m^3/s$. The experiment is set up for the user to operate the fSPL using the joystick controller to grab a jar of peanut butter (0.1$kg$) on end of the table and move it across the table where a target box (0.33x0.16x0.12$m$) is placed 0.45$m$ away from the jar, as seen in Fig. \ref{fig:pick_place_whole_body}. Three users are timed to get the jar from one end of the table into the box. Each user had 5 timed trials. User 1 improved their time from 53.28$s$ to 24.70$s$, user 2 improved from 45.34$s$ to 20.79$s$, and finally user 3 improved their time from 27.69$s$ to 17$s$. Thus proving the gradual improvement of adoption of using and controlling a soft, external limb. A variety of other daily livings objects were also successfully picked and placed, including a hair spray can (0.43$kg$) and a water bottle 0.88$kg$.
+To test the effective fSPL payload, or the payload when the fSPL is used in real-life situation, along with user controllability, a pick-and-place experimental scheme was designed for multiple users. For this experiment, a vacuum suction cup manipulator is used at the fSPL's end-effector. The vacuum suction cup has a theoretical payload of 0.86$kg$ and is connected to a vacuum pump with depressurization rates of 1.42x10$^{-3}m^3/s$. The experiment is set up for the user to operate the fSPL using a joystick controller to, pick a jar of peanut butter (0.1$kg$) on one end of the table and move it across the table where a target box (0.33x0.16x0.12$m$) is placed 0.45$m$ away, as seen in Fig. \ref{fig:pick_place_whole_body}. Three users are timed 5 times, to pick the jar from one end of the table and place it into the box.   User 1 improved their time from 53.28$s$ to 24.70$s$, user 2 improved from 45.34$s$ to 20.79$s$, and user 3 improved their time from 27.69$s$ to 17$s$. Thus proving the gradual adoption and improvement in controlling a soft, external limb. A variety of other daily livings objects were also successfully picked and placed, including a canister of hair spray (0.43$kg$) and a water bottle 0.88$kg$.
 
 
 % \subsubsection{Fold and Unfold}
@@ -373,8 +381,7 @@ To test the combination of effective fSPL payload, or the payload when the fSPL 
 
 \subsection{Whole-Body Continuum Grasping}
 
-
-The fSPL is capable of grasping objects by wrapping itself around the objects, similar to how an elephant can grasp objects with its trunk. This method of grasping allows the fSPL to carry heavier objects than it can support at the end of the arm. The fSPL was attached to a belt worn by a user and the arm was inflated to wrap around various objects to demonstrate its whole body grasping capabilities. The user would place the object within the fSPL's reach,then the fSPL would wrap around the object to hold it in place, and the user would release the object and show that the fSPL was capable of holding the object without any other assistance. The objects held in this way were a soccer ball weighing 0.45$kg$, a full plastic storage box weighing 1.75$kg$, and a weighted backpack, as seen in Fig. \ref{fig:pick_place_whole_body}. The maximum full body carrying weight of the fSPL was tested by adding weights to the backpack until the fSPL was no longer capble of supporting the backpack. The maximum weight that the fSPL could support in this manner was 4.51$kg$.
+The fSPL is capable of grasping objects by wrapping itself around the objects, similar to how an elephant can grasp objects with its trunk. This method of grasping allows the fSPL to carry heavier and larger objects than capable by its end-effector. The fSPL was attached to a belt worn by a user and was inflated to wrap around various objects to demonstrate its whole body grasping capability. The objects tested included a ball weighing 0.45$kg$, a box weighing 1.75$kg$, and a weighted backpack, as seen in Fig. \ref{fig:pick_place_whole_body}. The maximum payload capacity of the fSPL using the method was tested by gradually weights into the backpack resulting in a payload of 4.51$kg$ (4.5$x$ its own body weight).
 
 
 \subsection{Workspace}
@@ -386,9 +393,7 @@ The fSPL is capable of grasping objects by wrapping itself around the objects, s
 \vspace{-1.5em}
 \end{figure}
 
-The workspace of the fSPL was determined by recording the 3d coordinates of points on the outside of the workspace. The fSPL was mounted on a testing platform such that the fSPL was parallel to the floor when linearly extended, and reflective markers were placed on the base and tip of the fSPL to mark its starting and ending locations. Individual chambers of the arm were inflated to pressures up to 0.345$MPa$ to produce orientations at the maximum range of the fSPL. The pressures were provided by the testing rig which was equipped with a set of 16 regulators ((ITV1050-21N2CL4 Pressure Regulators
-SMC) and 32 solenoid valves (MHE3-MS1H-3/2G-1/8-
-K, Festo, Esslingen, DE). The regulators and solenoids were driven with a real time controller (CompactRIO, National Instruments Inc., Austin, TX). The position of the markers was recorded using a motion capture system with six cameras (Optitrack Prime 13W, NaturalPoint Inc., Corvallis, OR) surrounding the fSPL to produce a set of three dimensional points at the edge of the fSPL's workspace. A dome, shown in Fig \ref{fig:workspace_fabric_arm} was created from the set of points collected by the motion tracking system to represent the far reaches of the fSPL's workspace. It was assumed that the fSPL could reach any point inside that maximum dome, therefore the volume of the dome would be equal to the volume of the workspace. The fSPL has a workspace volume of 0.22m$^{3}$, a maximum vertical range of 0.63$m$ and a maximum horizontal range of 0.65$m$. 
+To evaluate the workspace of the fSPL, the limb was mounted parallel to the floor against gravity. Two sets of reflective markers were placed on the distal and proximal end of the fSPL to create virtual rigid bodies. The individual chambers of the limb were inflated in various combinations up to a safe operating pressure of 0.34$MPa$ to cover its entire workspace. The position of the markers was recorded using a motion capture system with six cameras (Optitrack Prime 13W, NaturalPoint Inc., Corvallis, OR). The workspace of the fSPL is generated from the collected end-effector positions shown in Fig \ref{fig:workspace_fabric_arm}. The fSPL is capable of reaching any point inside the workspace and therefore the workspace volume of the fSPL is 0.22m$^{3}$, the maximum vertical range of the fSPL is 0.63$m$ and the maximum horizontal range of the limb is 0.65$m$. 
 
 
 
@@ -435,7 +440,7 @@ K, Festo, Esslingen, DE). The regulators and solenoids were driven with a real t
 
 In this paper, the design, development, and evaluation of a novel, user-mounted, fabric Soft Poly-Limb (fSPL) is introduced. The highly-articulated, soft fSPL is designed towards supporting and assisting impaired individuals, for example CSM patients, with daily living tasks. The fSPL’s geometrical parameters are initially optimized and experimentally validated using quasi-static computational FEM models providing design guidelines for the community to design an fSPL based on the desired payload against gravity and bending ability.
 
-We demonstrated that this successful implementation of the fSPL can carry up to 1.5$kg$ while still being able to maneuver in space with various pick-and-place experiments, meeting the requirements of dealing with daily objects and tasks. Each fSPL segment, the f3CBA, is able to effectively lift 6.3$kg$, up to its 17 times its own weight without any effects of torsion noticed. By employing the whole body grasping strategy, the fSPL can wrap and carry load of up to 4.5$kg$, up to 4 times it’s own body weight of 1.11$kg$.
+We demonstrated that this successful implementation of the fSPL can carry up to 1.5$kg$ while still being able to maneuver in space with various pick-and-place experiments, meeting the requirements of dealing with daily objects and tasks. Each fSPL segment, the f3CBA, is able to effectively lift 5.5$kg$, up to its 15.1 times its own weight without any effects of torsion noticed. By employing the whole body grasping strategy, the fSPL can wrap and carry load of up to 4.5$kg$, up to 4 times it’s own body weight of 1.11$kg$.
 
 The fSPL was shown to be capable of safely working around a user with a large workspace and be able to safely interact with the environment. The fSPL’s segmented modular design allows the rapid swapping of actuators from the bladder array pouches for maintenance as well as interchangeable and replaceable segments. The end-effector of the fSPL is also modifiable to different types of graspers aside from the suction cup.
 
